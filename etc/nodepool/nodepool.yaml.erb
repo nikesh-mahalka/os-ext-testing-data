@@ -31,15 +31,15 @@ providers:
   - name: local_01
     username: '<%= provider_username %>'
     password: '<%= provider_password %>'
-    auth-url: 'http://localhost:5000/v2.0'
+    auth-url: 'http://172.16.2.78:5000/v2.0'
     project-id: 'admin'
-    max-servers: 2
+    max-servers: 6
     #This keypair is used to create the image and should be found in the cloud keypairs.
     #The public/private parts of this keypair need to be in the user who's running nodepool ~/.ssh/id_rsa
     #You can then login to vm's e.g. ubuntu username using this
     keypair: 'jenkins'
     images:
-      - name: d-p-c
+      - name: trusty
         # This is the image name to use found in this provider's `glance image-list`
         base-image: '<%= provider_image_name %>'
         min-ram: 8192
@@ -53,19 +53,6 @@ providers:
 # Due to the nature of FC passthrough, at most one node per blade can be enabled.
 # To acheive this with nodepool, create a "new" provider with max-server : 1
 # and this single image.
-  - name: local_01_fc
-    username: '<%= provider_username %>'
-    password: '<%= provider_password %>'
-    auth-url: 'http://localhost:5000/v2.0'
-    project-id: 'admin'
-    max-servers: 1
-    keypair: 'jenkins'
-    images:
-      - name: d-p-c-fc
-        base-image: '<%= provider_image_name %>'
-        min-ram: 8192
-        setup: <%= provider_image_setup_script_name %>
-        private-key: '/home/nodepool/.ssh/id_rsa'
 
 targets:
   - name: local-jenkins
