@@ -17,7 +17,7 @@ gearman-servers:
 
 labels:
   - name: d-p-c
-    image: d-p-c
+    image: dpc
     min-ready: 2
     providers:
       - name: local_01
@@ -42,10 +42,12 @@ providers:
     password: '<%= provider_password %>'
     auth-url: 'http://172.16.2.78:5000/v2.0'
     project-id: 'admin'
-    max-servers: 6
+    max-servers: 2
+    boot-timeout: 240
+    launch-timeout: 900
     images:
       - name: dpc
-        min-ram: 8192
+        min-ram: 6144
         diskimage: dpc
         username: jenkins
         private-key: '/home/nodepool/.ssh/id_rsa'
