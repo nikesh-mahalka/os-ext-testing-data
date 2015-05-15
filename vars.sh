@@ -10,10 +10,10 @@ export UPSTREAM_GERRIT_SSH_KEY_PATH=ci_key
 export PUBLISH_HOST=127.0.0.1
 
 #Used by Nodepool
-export MYSQL_ROOT_PASSWORD=stackdb
-export MYSQL_PASSWORD=stackdb
+export MYSQL_ROOT_PASSWORD=vedams123
+export MYSQL_PASSWORD=vedams123
 export PROVIDER_USERNAME=admin
-export PROVIDER_PASSWORD=nomoresecrete
+export PROVIDER_PASSWORD=vedams123
 #export PROVIDER_IMAGE_NAME="Ubuntu 14.04 Server Glance Image (Trusty)"
 #export PROVIDER_IMAGE_SETUP_SCRIPT_NAME="prepare_node_devstack_http_proxy.sh"
 export JENKINS_API_USER=jenkins

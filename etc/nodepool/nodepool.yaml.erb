@@ -40,14 +40,12 @@ providers:
   - name: local_01
     username: '<%= provider_username %>'
     password: '<%= provider_password %>'
-    auth-url: 'http://172.16.2.78:5000/v2.0'
+    auth-url: 'http://172.16.2.15:5000/v2.0'
     project-id: 'admin'
     max-servers: 2
-    boot-timeout: 240
-    launch-timeout: 900
     images:
       - name: dpc
-        min-ram: 6144
+        min-ram: 8192
         diskimage: dpc
         username: jenkins
         private-key: '/home/nodepool/.ssh/id_rsa'
