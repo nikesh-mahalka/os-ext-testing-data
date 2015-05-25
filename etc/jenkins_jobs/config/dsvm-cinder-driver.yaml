@@ -19,6 +19,14 @@
               echo "Install thirdparty client libraries" 
               #TODO: update your client here if needed, otherwise delete
               sudo pip install mydriverclient
+              sudo apt-get -y -qq install linux-image-extra-$(uname -r) > /dev/null
+              echo $?
+              sudo apt-get -y -qq install sysfsutils > /dev/null
+              echo $?
+              export FC_PROVIDER="172.16.2.16"
+              export FC_PROVIDER_USER=root
+              /opt/nodepool-scripts/invoke-fc-passthrough.sh 
+              
               echo "Configure the local.conf file to properly setup dothill driver in cinder.conf"
               cat <<EOF >$BASE/new/devstack/local.conf
 
