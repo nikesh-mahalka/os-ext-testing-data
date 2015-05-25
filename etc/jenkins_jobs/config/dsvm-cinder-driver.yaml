@@ -19,14 +19,20 @@
               echo "Install thirdparty client libraries" 
               #TODO: update your client here if needed, otherwise delete
               sudo pip install mydriverclient
-              echo "Configure the local.conf file to properly setup hp lefthand driver in cinder.conf"
+              echo "Configure the local.conf file to properly setup dothill driver in cinder.conf"
               cat <<EOF >$BASE/new/devstack/local.conf
 
           [[post-config|\$CINDER_CONF]]
           [DEFAULT]
           enabled_backends=dothill
           default_volume_type=dothill
-
+          ENABLED_SERVICES=c-api,c-sch,c-vol,cinder,dstat,g-api,g-reg,horizon,key,mysql,n-api,n-cond,n-cpu,n-crt,n-net,n-obj,n-sch,rabbit,tempest
+          # Disable security groups entirely
+          Q_USE_SECGROUP=False
+          LIBVIRT_FIREWALL_DRIVER=nova.virt.firewall.NoopFirewallDriver
+          #CINDER_PERIODIC_INTERVAL=10
+          CINDER_SECURE_DELETE=False
+          API_RATE_LIMIT=False
           [dothill]
           # add you driver configuration here
           volume_driver=cinder.volume.drivers.dothill.dothill_iscsi.DotHillISCSIDriver
@@ -54,8 +60,8 @@
           EOF
     
           cd $BASE/new/cinder
-          git fetch https://review.openstack.org/openstack/cinder refs/changes/65/177665/5 && git cherry-pick FETCH_HEAD 
-
+          #git fetch https://review.openstack.org/openstack/cinder refs/changes/65/177665/5 && git cherry-pick FETCH_HEAD 
+          git fetch https://review.openstack.org/openstack/cinder refs/changes/65/177665/5 && git checkout FETCH_HEAD
           }}
 
           export -f pre_test_hook
